@@ -1,20 +1,23 @@
+using Sirenix.OdinInspector;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainGenerator : MonoBehaviour
+public enum TileType
+{
+    None,
+    Forest,
+    Grass,
+    Ice,
+    Mountain,
+    Sand,
+    Water
+}
+
+public class TerrainGenerator : SerializedMonoBehaviour
 {
     [SerializeField]
-    private Tile forestTile = null;
-    [SerializeField]
-    private Tile grassTile = null;
-    [SerializeField]
-    private Tile iceTile = null;
-    [SerializeField]
-    private Tile mountainTile = null;
-    [SerializeField]
-    private Tile sandTile = null;
-    [SerializeField]
-    private Tile waterTile = null;
+    private Dictionary<TileType, Tile> tilesPrefab = new Dictionary<TileType, Tile>();
 
     private void Start()
     {
