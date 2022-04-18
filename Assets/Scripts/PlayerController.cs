@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,12 +7,13 @@ public class PlayerController : MonoBehaviour
     private const string shedTag = "Shed";
 
     private Mover mover = null;
-    private Carrier carrier = null;
+
+    private UnityEvent<Shed> onShedClick = new UnityEvent<Shed>();
 
     private void Awake()
     {
         mover = GetComponentInChildren<Mover>();
-        carrier = GetComponentInChildren<Carrier>();
+
     }
 
     private void Update()
@@ -29,12 +31,18 @@ public class PlayerController : MonoBehaviour
                         mover.MoveTo(hit.point);
                         break;
                     case shedTag:
+                        onShedClick.Invoke(hit.collider.GetComponent<Shed>());
                         break;
                     default:
                         break;
                 }
             }
         }
+    }
+
+    public void AddShedClickListener(UnityAction<Shed> listener)
+    {
+        onShedClick.AddListener(listener);
     }
 
     private static Ray GetMouseRay()

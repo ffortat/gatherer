@@ -23,7 +23,7 @@ public class TerrainGenerator : SerializedMonoBehaviour
     [SerializeField]
     private int terrainHeight = 10;
 
-    private void Start()
+    private void Awake()
     {
         GenerateTerrain();
     }
