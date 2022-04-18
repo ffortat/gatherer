@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7257206644552909950}
   - component: {fileID: 7152381716517714044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
