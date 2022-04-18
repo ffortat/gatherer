@@ -12,7 +12,6 @@ public enum TileType
     Water
 }
 
-[ExecuteAlways]
 public class TerrainGenerator : SerializedMonoBehaviour
 {
     [SerializeField]
@@ -33,6 +32,7 @@ public class TerrainGenerator : SerializedMonoBehaviour
         {
             for (int z = 0; z < terrainHeight; z += 1)
             {
+                //Tile tile = Instantiate(tilesPrefab[TileType.Ice]);
                 Tile tile = Instantiate(tilesPrefab[(TileType)Random.Range(0, 6)]);
                 tile.transform.parent = transform;
                 tile.transform.localPosition = new Vector3(x * 2f + (z % 2), 0, z * 1.75f);
