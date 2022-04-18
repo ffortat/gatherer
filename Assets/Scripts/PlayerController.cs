@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         RaycastHit hit;
         LayerMask tileAndShedMask = LayerMask.GetMask(tileTag, shedTag);
 
