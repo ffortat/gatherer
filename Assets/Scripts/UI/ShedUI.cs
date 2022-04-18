@@ -30,6 +30,11 @@ public class ShedUI : MonoBehaviour
         leaveButton.onClick.AddListener(CloseWindow);
 
         playerController.AddShedClickListener(SelectShed);
+
+        if (!currentShed)
+        {
+            CloseWindow();
+        }
     }
 
     public void OpenWindow()
@@ -54,6 +59,7 @@ public class ShedUI : MonoBehaviour
     {
         takeButton.interactable = currentShed && currentShed.HasCube();
         putButton.interactable = currentShed && playerController.Carrier.HasCube();
+        cubeCounter.text = currentShed ? currentShed.CubeCount.ToString() : "0";
     }
 
     private void OnTakeButtonClick()

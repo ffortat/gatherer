@@ -47,4 +47,6 @@ public class Shed : MonoBehaviour
     {
         return cubes.Count > 0;
     }
+
+    public int CubeCount { get => cubes.Count; }
 }
