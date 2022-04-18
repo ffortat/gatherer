@@ -60,5 +60,7 @@ public class TerrainGenerator : SerializedMonoBehaviour
         {
             shedFound.transform.LookAt(new Vector3(0, 0.5f, 0));
         }
+
+        sheds[0].SpawnCubes(10);
     }
 }
