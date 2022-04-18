@@ -12,6 +12,9 @@ public class Carrier : MonoBehaviour
     {
         cubeStore.Add(cube);
         cube.parent = storage;
+        cube.GetComponent<Rigidbody>().detectCollisions = false;
+        cube.GetComponent<Rigidbody>().isKinematic = true;
+        cube.localPosition = Vector3.zero;
     }
 
     public Transform DropCube()
@@ -20,6 +23,9 @@ public class Carrier : MonoBehaviour
         {
             Transform cube = cubeStore[0];
             cubeStore.RemoveAt(0);
+
+            cube.GetComponent<Rigidbody>().detectCollisions = true;
+            cube.GetComponent<Rigidbody>().isKinematic = false;
 
             return cube;
         }
