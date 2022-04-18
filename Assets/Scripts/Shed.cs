@@ -23,7 +23,7 @@ public class Shed : MonoBehaviour
 
     public Transform TakeCube()
     {
-        if (cubes.Count > 0)
+        if (HasCube())
         {
             var cube = cubes[0];
             cubes.RemoveAt(0);
@@ -41,5 +41,10 @@ public class Shed : MonoBehaviour
             cube.localPosition = Vector3.zero;
             cubes.Add(cube);
         }
+    }
+
+    public bool HasCube()
+    {
+        return cubes.Count > 0;
     }
 }
