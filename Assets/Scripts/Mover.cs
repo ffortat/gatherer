@@ -6,6 +6,9 @@ public class Mover : MonoBehaviour
     [SerializeField] [Range(0, 15)]
     private float baseSpeed = 10f;
 
+    [SerializeField]
+    private Transform characterModel = null;
+
     private float currentSpeed = 0f;
 
     private Vector3 baseDestination = Vector3.zero;
@@ -34,7 +37,7 @@ public class Mover : MonoBehaviour
         {
             Vector3 direction = trip.normalized;
             rigidbody.MovePosition(transform.position + Vector3.ClampMagnitude(direction * currentSpeed * Time.fixedDeltaTime, trip.magnitude));
-            //transform.LookAt(destination);
+            characterModel.LookAt(new Vector3(baseDestination.x, characterModel.position.y, baseDestination.z));
         }
     }
 
