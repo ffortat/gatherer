@@ -3,8 +3,13 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private float shedOpenDistance = 2f;
+
     private const string tileTag = "Tile";
     private const string shedTag = "Shed";
+    private int tileLayer = 0;
+    private int shedLayer = 0;
 
     private Mover mover = null;
     private Carrier carrier = null;
@@ -15,27 +20,32 @@ public class PlayerController : MonoBehaviour
     {
         mover = GetComponentInChildren<Mover>();
         carrier = GetComponentInChildren<Carrier>();
+
+        tileLayer = LayerMask.NameToLayer(tileTag);
+        shedLayer = LayerMask.NameToLayer(shedTag);
     }
 
     private void Update()
     {
         RaycastHit hit;
-        LayerMask tileMask = LayerMask.GetMask(tileTag, shedTag);
+        LayerMask tileAndShedMask = LayerMask.GetMask(tileTag, shedTag);
 
-        if (Physics.Raycast(GetMouseRay(), out hit, tileMask))
+        if (Physics.Raycast(GetMouseRay(), out hit, tileAndShedMask))
         {
             if (Input.GetMouseButton(0))
             {
-                switch (hit.collider.tag)
+                if (hit.collider.gameObject.layer == tileLayer)
                 {
-                    case tileTag:
-                        mover.MoveTo(hit.point);
-                        break;
-                    case shedTag:
+                    mover.MoveTo(hit.point);
+                }
+                else if (hit.collider.gameObject.layer == shedLayer)
+                {
+                    Vector3 shedDistance = hit.transform.position - mover.transform.position;
+
+                    if (shedDistance.magnitude < shedOpenDistance)
+                    {
                         onShedClick.Invoke(hit.collider.GetComponent<Shed>());
-                        break;
-                    default:
-                        break;
+                    }
                 }
             }
         }
