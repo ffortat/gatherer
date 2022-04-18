@@ -157,5 +157,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  shedPrefab: {fileID: 7152381716517714044, guid: b2788b0eabe8bc64096965d997ec51f9,
+    type: 3}
   terrainWidth: 20
   terrainHeight: 20

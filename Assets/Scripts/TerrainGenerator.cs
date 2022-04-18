@@ -17,6 +17,8 @@ public class TerrainGenerator : SerializedMonoBehaviour
     [SerializeField]
     private Dictionary<TileType, Tile> tilesPrefab = new Dictionary<TileType, Tile>();
     [SerializeField]
+    private Shed shedPrefab = null;
+    [SerializeField]
     private int terrainWidth = 10;
     [SerializeField]
     private int terrainHeight = 10;
@@ -39,6 +41,24 @@ public class TerrainGenerator : SerializedMonoBehaviour
             }
         }
 
+        Vector3 center = new Vector3(terrainWidth, 0.5f, terrainHeight * 1.75f / 2f);
+        List<Shed> sheds = new List<Shed>();
+
+        Shed shed = Instantiate(shedPrefab);
+        shed.transform.parent = transform;
+        shed.transform.localPosition = new Vector3((terrainWidth - 1) * 2f + (1 - terrainHeight % 2), 0.5f, (terrainHeight - 1) * 1.75f);
+        sheds.Add(shed);
+
+        shed = Instantiate(shedPrefab);
+        shed.transform.parent = transform;
+        shed.transform.localPosition = new Vector3(0, 0.5f, 0);
+        sheds.Add(shed);
+
         transform.localPosition = new Vector3(-terrainWidth, -0.5f, -terrainHeight * 1.75f / 2f);
+        
+        foreach (Shed shedFound in sheds)
+        {
+            shedFound.transform.LookAt(new Vector3(0, 0.5f, 0));
+        }
     }
 }
