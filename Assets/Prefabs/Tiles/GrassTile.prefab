@@ -70,7 +70,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d22f6fca446ccdc45bb18f33cfd625e7,
         type: 3}
       propertyPath: m_Name
-      value: GrassTile Variant
+      value: GrassTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d22f6fca446ccdc45bb18f33cfd625e7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d22f6fca446ccdc45bb18f33cfd625e7, type: 3}
@@ -80,6 +85,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5975292358456565223}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &-7373118182756185711
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786336864436871350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4575734979276873811, guid: d22f6fca446ccdc45bb18f33cfd625e7, type: 3}
 --- !u!114 &-2185992939358823836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,3 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3ff7e3e9c64ff45b0c6a1476f44f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inwardSpeedPercentageModifier: 0
+  outwardSpeedPercentageModifier: 0
